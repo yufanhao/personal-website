@@ -19,12 +19,12 @@ body {
 
 .nav {
   display: flex;
-  width: 100%;
-  justify-content: start; /* Or center / space-between depending on your layout */
+  justify-content: start;
   gap: 1rem;
   padding: 1rem;
-  background-color: #282c34; /* Example background */
+  background-color: #535c91;
   color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .nav a {
