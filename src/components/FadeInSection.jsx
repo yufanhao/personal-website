@@ -15,7 +15,7 @@ function FadeInSection({ children }) {
   return (
     <div
       ref={ref}
-      className={`transition-opacity duration-700 ease-in-out ${
+      className={`transition-opacity duration-1500 ease-in-out ${
         visible ? "opacity-100" : "opacity-0"
       }`}
     >
