@@ -1,11 +1,31 @@
-import { useEffect } from "react";
-import FadeInSection from "../components/FadeInSection";
+import { useEffect, useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
+import FadeInSection from "../components/FadeInSection";
 
 export default function Home() {
+  const [showArrow, setShowArrow] = useState(true);
+
   useEffect(() => {
     document.title = "Fanhao Yu";
+
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setShowArrow(false);
+      } else {
+        setShowArrow(true);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const scrollToProjects = () => {
+    const projectsSection = document.getElementById("projects-section");
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   const projects = [
     {
@@ -89,7 +109,6 @@ export default function Home() {
             animationDelay: "1.5s",
           }}
         ></div>
-
         <div // x shape (two crossing lines)
           className="absolute bottom-1/2 right-1/6 w-6 h-6 animate-spin"
           style={{ animationDuration: "25s" }}
@@ -97,12 +116,10 @@ export default function Home() {
           <div className="absolute top-1/2 left-0 w-full h-0.5 bg-white/12 transform -translate-y-1/2 rotate-45"></div>
           <div className="absolute top-1/2 left-0 w-full h-0.5 bg-white/12 transform -translate-y-1/2 -rotate-45"></div>
         </div>
-
         <div // diamond
-          className="absolute bottom-24 left-1/2 w-4 h-4 bg-pink-300/25 rotate-45 animate-bounce transform -translate-x-1/2"
+          className="absolute bottom-24 left-5/7 w-4 h-4 bg-pink-300/25 rotate-45 animate-bounce transform -translate-x-1/2"
           style={{ animationDelay: "2.5s" }}
         ></div>
-
         <div // vertical line
           className="absolute bottom-1/6 right-1/8 w-1 h-10 rotate-135 bg-white/10 animate-pulse"
           style={{ animationDelay: "3s" }}
@@ -113,7 +130,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto text-center text-white">
           {/* Hero Section */}
           <FadeInSection>
-            <div className="mb-16">
+            <div className="mb-8">
               <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent mb-6">
                 Fanhao Yu
               </h1>
@@ -151,19 +168,18 @@ export default function Home() {
 
               <div className="max-w-2xl mx-auto">
                 <p className="text-lg md:text-xl text-gray-200 leading-relaxed font-light">
-                  I'm Fanhao, a computer science student at
-                  <span className="font-semibold text-white">
-                    {" "}
-                    Cornell University
-                  </span>
-                  . I love building projects that blend creativity and logic.
+                  I'm Fanhao, a computer science student at Cornell University.
+                </p>
+                <p className="text-lg md:text-xl text-gray-200 leading-relaxed font-light">
+                  I love building projects that blend creativity and logic.
                 </p>
               </div>
             </div>
           </FadeInSection>
           {/* Projects Section */}
           <FadeInSection>
-            <div className="mb-20">
+            <div id="projects-section" className="mb-20">
+              <div className="h-10"></div>
               <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                 Featured Projects
               </h2>
@@ -259,6 +275,33 @@ export default function Home() {
           </FadeInSection>
           <div className="h-32"></div> {/* Bottom spacing */}
         </div>
+      </div>
+
+      {/* Floating scroll down arrow overlay */}
+      <div
+        className={`fixed bottom-12 left-1/2 transform -translate-x-1/2 z-50 pointer-events-none transition-all duration-500 ${
+          showArrow ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        }`}
+      >
+        <button
+          onClick={scrollToProjects}
+          className="group animate-bounce cursor-pointer bg-white/10 hover:bg-white/20 rounded-full p-4 transition-all duration-300 border border-white/20 hover:border-white/40 pointer-events-auto"
+          aria-label="Scroll to projects"
+        >
+          <svg
+            className="w-6 h-6 text-white group-hover:text-blue-200 transition-colors"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 14l-7 7m0 0l-7-7m7 7V3"
+            />
+          </svg>
+        </button>
       </div>
     </div>
   );
