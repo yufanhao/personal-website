@@ -160,7 +160,7 @@ export default function Home() {
               <div className="relative inline-block mb-8">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full blur-lg opacity-50 animate-pulse"></div>
                 <img
-                  src="/public/profile.png"
+                  src="/profile.png"
                   alt="Fanhao"
                   className="relative w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-4 border-white/20 shadow-2xl"
                 />
