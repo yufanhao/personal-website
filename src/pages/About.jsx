@@ -27,7 +27,7 @@ export default function About() {
 
   const timeline = [
     {
-      year: "2023 - Present",
+      year: "2024 - Present",
       title: "Cornell University",
       description:
         "Studying Computer Science with a focus on software engineering and AI/ML. Maintaining a strong GPA while actively participating in tech clubs and hackathons.",

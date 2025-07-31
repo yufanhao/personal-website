@@ -30,16 +30,16 @@ export default function Home() {
   const projects = [
     {
       id: 1,
-      title: "Project One",
+      title: "Senna",
       description:
         "A brief description of your first project. This could be a web app, mobile app, or any other interesting project you've worked on.",
       image: "/project1.png",
       link: "/projects/project-one",
-      tags: ["React", "Node.js", "MongoDB"],
+      tags: ["Swift", "JavaScript", "MongoDB"],
     },
     {
       id: 2,
-      title: "Project Two",
+      title: "Amphenol Inventory Management System",
       description:
         "A brief description of your second project. Highlight the key technologies used or the problem it solves.",
       image: "/project2.png",
@@ -48,7 +48,7 @@ export default function Home() {
     },
     {
       id: 3,
-      title: "Project Three",
+      title: "Munch",
       description:
         "A brief description of your third project. Mention what makes this project unique or interesting.",
       image: "/project3.png",
