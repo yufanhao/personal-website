@@ -35,7 +35,7 @@ export default function Home() {
         "A brief description of your first project. This could be a web app, mobile app, or any other interesting project you've worked on.",
       image: "/project1.png",
       link: "/projects/project-one",
-      tags: ["Swift", "JavaScript", "MongoDB"],
+      tags: ["Swift", "JavaScript"],
     },
     {
       id: 2,
@@ -44,7 +44,7 @@ export default function Home() {
         "A brief description of your second project. Highlight the key technologies used or the problem it solves.",
       image: "/project2.png",
       link: "/projects/project-two",
-      tags: ["Python", "ML", "Flask"],
+      tags: ["PHP", "JavaScript"],
     },
     {
       id: 3,
