@@ -4,15 +4,45 @@ import FadeInSection from "../components/FadeInSection";
 
 export default function Home() {
   const [showArrow, setShowArrow] = useState(true);
+  const [currentSection, setCurrentSection] = useState(0);
 
   useEffect(() => {
     document.title = "Fanhao Yu";
 
     const handleScroll = () => {
-      if (window.scrollY > 100) {
+      const scrollY = window.scrollY;
+      const experiencesSection = document.getElementById("experiences-section");
+      const projectsSection = document.getElementById("projects-section");
+      const ctaSection = document.getElementById("cta-section");
+
+      // Calculate how close we are to the bottom
+      const documentHeight = document.documentElement.scrollHeight;
+      const windowHeight = window.innerHeight;
+      const scrollableHeight = documentHeight - windowHeight;
+      const bottomProximity = scrollY / scrollableHeight;
+
+      // Show arrow unless we're very close to the bottom
+      if (bottomProximity > 0.9) {
         setShowArrow(false);
       } else {
         setShowArrow(true);
+      }
+
+      // Determine current section based on scroll position
+      if (ctaSection && scrollY >= ctaSection.offsetTop - 200) {
+        setCurrentSection(3);
+      } else if (
+        projectsSection &&
+        scrollY >= projectsSection.offsetTop - 200
+      ) {
+        setCurrentSection(2);
+      } else if (
+        experiencesSection &&
+        scrollY >= experiencesSection.offsetTop - 200
+      ) {
+        setCurrentSection(1);
+      } else {
+        setCurrentSection(0);
       }
     };
 
@@ -20,40 +50,56 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToProjects = () => {
+  const scrollToNextSection = () => {
+    const experiencesSection = document.getElementById("experiences-section");
     const projectsSection = document.getElementById("projects-section");
-    if (projectsSection) {
-      projectsSection.scrollIntoView({ behavior: "smooth" });
+    const ctaSection = document.getElementById("cta-section");
+
+    if (currentSection === 0) {
+      // Scroll to experiences
+      if (experiencesSection) {
+        experiencesSection.scrollIntoView({ behavior: "smooth" });
+      }
+    } else if (currentSection === 1) {
+      // Scroll to projects
+      if (projectsSection) {
+        projectsSection.scrollIntoView({ behavior: "smooth" });
+      }
+    } else if (currentSection === 2) {
+      // Scroll to CTA
+      if (ctaSection) {
+        ctaSection.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
   const projects = [
     {
       id: 1,
-      title: "Project One",
+      title: "Senna",
       description:
-        "A brief description of your first project. This could be a web app, mobile app, or any other interesting project you've worked on.",
-      image: "/project1.png",
+        "iOS Social fitness app featuring real-time workout tracking and social feed, like Strava for weight lifting. Available on App Store!",
+      image: "https://via.placeholder.com/400x225/403F4C/ffffff?text=Project+1",
       link: "/projects/project-one",
-      tags: ["React", "Node.js", "MongoDB"],
+      tags: ["Swift", "Firebase", "MVVM Architecture"],
     },
     {
       id: 2,
-      title: "Project Two",
+      title: "DuckDuckDebug",
       description:
-        "A brief description of your second project. Highlight the key technologies used or the problem it solves.",
-      image: "/project2.png",
+        "AI voice controlled debugging tool combining the CodeBERT model (fine-tuned on CoNaLa dataset) and RAG for intelligent assistance.",
+      image: "duckduckdebug.png",
       link: "/projects/project-two",
-      tags: ["Python", "ML", "Flask"],
+      tags: ["Node.js", "React", "ML", "MongoDB"],
     },
     {
       id: 3,
-      title: "Project Three",
+      title: "Munch",
       description:
-        "A brief description of your third project. Mention what makes this project unique or interesting.",
-      image: "/project3.png",
+        "iOS social dining app that scans receipts and automatically extracts food items to split the bill in group settings.",
+      image: "munch.png",
       link: "/projects/project-three",
-      tags: ["JavaScript", "API", "CSS"],
+      tags: ["Python", "Flask", "SwiftUI", "Computer Vision"],
     },
   ];
 
@@ -61,8 +107,7 @@ export default function Home() {
     <div
       className="min-h-screen"
       style={{
-        background:
-          "linear-gradient(135deg, #1B1A55 0%, #2D1B69 50%, #3F2A84 100%)",
+        backgroundColor: "#121420",
       }}
     >
       {/* Subtle grid pattern overlay */}
@@ -71,8 +116,8 @@ export default function Home() {
           className="absolute inset-0"
           style={{
             backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+            linear-gradient(rgba(64,63,76,0.4) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(64,63,76,0.4) 1px, transparent 1px)
           `,
             backgroundSize: "50px 50px",
           }}
@@ -82,30 +127,50 @@ export default function Home() {
       {/* Animated geometric elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div // solid square
-          className="absolute top-1/6 right-20 w-4 h-4 bg-white/20 rotate-45 animate-pulse"
+          className="absolute top-1/6 right-20 w-4 h-4 rotate-45 animate-pulse"
+          style={{ backgroundColor: "rgba(64,63,76,0.9)" }}
         ></div>
         <div // hollow square
-          className="absolute top-40 left-20 w-6 h-6 border-2 border-white/15 rotate-12 animate-spin"
-          style={{ animationDuration: "20s" }}
+          className="absolute top-40 left-20 w-6 h-6 border-2 rotate-12 animate-spin"
+          style={{
+            borderColor: "rgba(168,165,160,0.8)",
+            animationDuration: "20s",
+          }}
         ></div>
         <div // solid circle
-          className="absolute top-60 right-1/3 w-3 h-3 bg-blue-300/30 rounded-full animate-bounce"
-          style={{ animationDelay: "1s" }}
+          className="absolute top-60 right-1/3 w-3 h-3 rounded-full animate-bounce"
+          style={{
+            backgroundColor: "rgba(232,230,227,0.7)",
+            animationDelay: "1s",
+          }}
+        ></div>
+        <div // solid circle
+          className="absolute bottom-28 left-9/30 w-3 h-3 rounded-full animate-bounce"
+          style={{
+            backgroundColor: "rgba(232,230,227,0.7)",
+            animationDelay: "1s",
+          }}
         ></div>
         <div // hollow circle
-          className="absolute bottom-40 left-1/7 w-5 h-5 border-2 border-purple-300/20 rounded-full animate-pulse"
-          style={{ animationDelay: "2s" }}
+          className="absolute bottom-40 left-1/7 w-5 h-5 border-2 rounded-full animate-pulse"
+          style={{
+            borderColor: "rgba(64,63,76,0.9)",
+            animationDelay: "2s",
+          }}
         ></div>
         <div // line
-          className="absolute top-1/2 left-1/3 w-2 h-8 bg-white/10 rotate-45 animate-pulse"
-          style={{ animationDelay: "0.5s" }}
+          className="absolute top-1/2 left-1/3 w-2 h-8 rotate-45 animate-pulse"
+          style={{
+            backgroundColor: "rgba(168,165,160,0.6)",
+            animationDelay: "0.5s",
+          }}
         ></div>
         <div // triangle
           className="absolute top-3/7 left-1/6 w-0 h-0 animate-pulse"
           style={{
             borderLeft: "10px solid transparent",
             borderRight: "10px solid transparent",
-            borderBottom: "17.5px solid rgba(255,255,255,0.15)",
+            borderBottom: "17.5px solid rgba(64,63,76,0.8)",
             animationDelay: "1.5s",
           }}
         ></div>
@@ -113,30 +178,53 @@ export default function Home() {
           className="absolute bottom-1/2 right-1/6 w-6 h-6 animate-spin"
           style={{ animationDuration: "25s" }}
         >
-          <div className="absolute top-1/2 left-0 w-full h-0.5 bg-white/12 transform -translate-y-1/2 rotate-45"></div>
-          <div className="absolute top-1/2 left-0 w-full h-0.5 bg-white/12 transform -translate-y-1/2 -rotate-45"></div>
+          <div
+            className="absolute top-1/2 left-0 w-full h-0.5 transform -translate-y-1/2 rotate-45"
+            style={{ backgroundColor: "rgba(168,165,160,0.7)" }}
+          ></div>
+          <div
+            className="absolute top-1/2 left-0 w-full h-0.5 transform -translate-y-1/2 -rotate-45"
+            style={{ backgroundColor: "rgba(168,165,160,0.7)" }}
+          ></div>
         </div>
         <div // diamond
-          className="absolute bottom-24 left-5/7 w-4 h-4 bg-pink-300/25 rotate-45 animate-bounce transform -translate-x-1/2"
-          style={{ animationDelay: "2.5s" }}
+          className="absolute bottom-24 left-5/7 w-4 h-4 rotate-45 animate-bounce transform -translate-x-1/2"
+          style={{
+            backgroundColor: "rgba(232,230,227,0.6)",
+            animationDelay: "2.5s",
+          }}
         ></div>
         <div // vertical line
-          className="absolute bottom-1/6 right-1/8 w-1 h-10 rotate-135 bg-white/10 animate-pulse"
-          style={{ animationDelay: "3s" }}
+          className="absolute bottom-1/6 right-1/8 w-1 h-10 rotate-135 animate-pulse"
+          style={{
+            backgroundColor: "rgba(64,63,76,0.8)",
+            animationDelay: "3s",
+          }}
         ></div>
       </div>
 
       <div className="relative py-20 px-4 sm:px-8 lg:px-16">
-        <div className="max-w-7xl mx-auto text-center text-white">
+        <div
+          className="max-w-7xl mx-auto text-center"
+          style={{ color: "#E8E6E3" }}
+        >
           {/* Hero Section */}
           <FadeInSection>
-            <div className="mb-8">
-              <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent mb-6">
+            <div className="mt-16 mb-8">
+              <h1
+                className="text-6xl md:text-7xl font-bold mb-6"
+                style={{
+                  color: "#E8E6E3",
+                }}
+              >
                 Fanhao Yu
               </h1>
 
               <div className="h-20 flex items-center justify-center">
-                <p className="text-xl md:text-2xl text-gray-200 font-light">
+                <p
+                  className="text-xl md:text-2xl font-light"
+                  style={{ color: "#A8A5A0" }}
+                >
                   <Typewriter
                     words={[
                       "Computer Science Student 👨‍💻",
@@ -158,21 +246,235 @@ export default function Home() {
           <FadeInSection>
             <div className="mb-50">
               <div className="relative inline-block mb-8">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full blur-lg opacity-50 animate-pulse"></div>
+                <div
+                  className="absolute inset-0 rounded-full blur-lg opacity-60 animate-pulse"
+                  style={{
+                    backgroundColor: "#403F4C",
+                  }}
+                ></div>
                 <img
-                  src="/profile.png"
+                  src="profile.png"
                   alt="Fanhao"
-                  className="relative w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-4 border-white/20 shadow-2xl"
+                  className="relative w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-4 shadow-2xl"
+                  style={{ borderColor: "rgba(64,63,76,0.6)" }}
                 />
               </div>
 
               <div className="max-w-2xl mx-auto">
-                <p className="text-lg md:text-xl text-gray-200 leading-relaxed font-light">
+                <p
+                  className="text-lg md:text-xl leading-relaxed font-light"
+                  style={{ color: "#A8A5A0" }}
+                >
                   I'm Fanhao, a computer science student at Cornell University.
                 </p>
-                <p className="text-lg md:text-xl text-gray-200 leading-relaxed font-light">
+                <p
+                  className="text-lg md:text-xl leading-relaxed font-light"
+                  style={{ color: "#A8A5A0" }}
+                >
                   I love building projects that blend creativity and logic.
                 </p>
+              </div>
+            </div>
+          </FadeInSection>
+          {/* Experiences Timeline Section */}
+          <FadeInSection>
+            <div id="experiences-section" className="mb-50">
+              <div className="h-10"></div>
+              <h2
+                className="text-4xl md:text-5xl font-bold mb-4"
+                style={{
+                  color: "#E8E6E3",
+                }}
+              >
+                Experience
+              </h2>
+              <p className="mb-8 text-lg" style={{ color: "#6B6B6B" }}>
+                My professional journey and achievements
+              </p>
+
+              <div className="max-w-4xl mx-auto">
+                {/* Timeline container */}
+                <div className="relative">
+                  {/* Vertical line */}
+                  <div
+                    className="absolute left-8 top-0 bottom-0 w-0.5"
+                    style={{ backgroundColor: "rgba(64,63,76,0.6)" }}
+                  ></div>
+
+                  {/* Timeline items */}
+                  <div className="space-y-8">
+                    {/* Experience 1 */}
+                    <div className="relative flex items-start">
+                      {/* Timeline dot */}
+                      <div
+                        className="absolute left-6 w-4 h-4 rounded-full border-4"
+                        style={{
+                          backgroundColor: "#1B2432",
+                          borderColor: "#403F4C",
+                        }}
+                      ></div>
+
+                      {/* Content */}
+                      <div className="ml-16 flex-1">
+                        <div
+                          className="rounded-xl p-6 border transition-all duration-300 hover:scale-105"
+                          style={{
+                            backgroundColor: "rgba(44,43,60,0.3)",
+                            borderColor: "rgba(64,63,76,0.4)",
+                          }}
+                        >
+                          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
+                            <h3
+                              className="text-xl font-bold"
+                              style={{ color: "#E8E6E3" }}
+                            >
+                              Software Engineering Intern
+                            </h3>
+                            <span
+                              className="text-sm font-medium px-3 py-1 rounded-full border"
+                              style={{
+                                backgroundColor: "rgba(27,36,50,0.4)",
+                                color: "#A8A5A0",
+                                borderColor: "rgba(64,63,76,0.5)",
+                              }}
+                            >
+                              Summer 2025
+                            </span>
+                          </div>
+                          <p
+                            className="text-lg font-medium mb-2"
+                            style={{ color: "#A8A5A0" }}
+                          >
+                            Amphenol
+                          </p>
+                          <p
+                            className="text-sm leading-relaxed"
+                            style={{ color: "#A8A5A0" }}
+                          >
+                            Built an enterprise-grade internal inventory system
+                            with real-time tracking, advanced search, and
+                            multi-user authentication for employees to track
+                            5000+ previously unmanaged items, equipment, parts,
+                            and products. Currently deployed on internal company
+                            network
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Experience 2 */}
+                    <div className="relative flex items-start">
+                      {/* Timeline dot */}
+                      <div
+                        className="absolute left-6 w-4 h-4 rounded-full border-4"
+                        style={{
+                          backgroundColor: "#1B2432",
+                          borderColor: "#403F4C",
+                        }}
+                      ></div>
+
+                      {/* Content */}
+                      <div className="ml-16 flex-1">
+                        <div
+                          className="rounded-xl p-6 border transition-all duration-300 hover:scale-105"
+                          style={{
+                            backgroundColor: "rgba(44,43,60,0.3)",
+                            borderColor: "rgba(64,63,76,0.4)",
+                          }}
+                        >
+                          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
+                            <h3
+                              className="text-xl font-bold"
+                              style={{ color: "#E8E6E3" }}
+                            >
+                              Research Assistant
+                            </h3>
+                            <span
+                              className="text-sm font-medium px-3 py-1 rounded-full border"
+                              style={{
+                                backgroundColor: "rgba(27,36,50,0.4)",
+                                color: "#A8A5A0",
+                                borderColor: "rgba(64,63,76,0.5)",
+                              }}
+                            >
+                              2023 - Present
+                            </span>
+                          </div>
+                          <p
+                            className="text-lg font-medium mb-2"
+                            style={{ color: "#A8A5A0" }}
+                          >
+                            Cornell University
+                          </p>
+                          <p
+                            className="text-sm leading-relaxed"
+                            style={{ color: "#A8A5A0" }}
+                          >
+                            Conducted research in artificial intelligence and
+                            machine learning. Published findings and presented
+                            at academic conferences.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Experience 3 */}
+                    <div className="relative flex items-start">
+                      {/* Timeline dot */}
+                      <div
+                        className="absolute left-6 w-4 h-4 rounded-full border-4"
+                        style={{
+                          backgroundColor: "#1B2432",
+                          borderColor: "#403F4C",
+                        }}
+                      ></div>
+
+                      {/* Content */}
+                      <div className="ml-16 flex-1">
+                        <div
+                          className="rounded-xl p-6 border transition-all duration-300 hover:scale-105"
+                          style={{
+                            backgroundColor: "rgba(44,43,60,0.3)",
+                            borderColor: "rgba(64,63,76,0.4)",
+                          }}
+                        >
+                          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
+                            <h3
+                              className="text-xl font-bold"
+                              style={{ color: "#E8E6E3" }}
+                            >
+                              Teaching Assistant
+                            </h3>
+                            <span
+                              className="text-sm font-medium px-3 py-1 rounded-full border"
+                              style={{
+                                backgroundColor: "rgba(27,36,50,0.4)",
+                                color: "#A8A5A0",
+                                borderColor: "rgba(64,63,76,0.5)",
+                              }}
+                            >
+                              Fall 2023
+                            </span>
+                          </div>
+                          <p
+                            className="text-lg font-medium mb-2"
+                            style={{ color: "#A8A5A0" }}
+                          >
+                            Cornell University - CS 2110
+                          </p>
+                          <p
+                            className="text-sm leading-relaxed"
+                            style={{ color: "#A8A5A0" }}
+                          >
+                            Assisted students with object-oriented programming
+                            concepts and data structures. Held office hours and
+                            graded assignments.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </FadeInSection>
@@ -180,10 +482,15 @@ export default function Home() {
           <FadeInSection>
             <div id="projects-section" className="mb-20">
               <div className="h-10"></div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              <h2
+                className="text-4xl md:text-5xl font-bold mb-4"
+                style={{
+                  color: "#E8E6E3",
+                }}
+              >
                 Featured Projects
               </h2>
-              <p className="text-gray-300 mb-12 text-lg">
+              <p className="mb-12 text-lg" style={{ color: "#6B6B6B" }}>
                 Here are some of my recent works
               </p>
 
@@ -191,10 +498,30 @@ export default function Home() {
                 {projects.map((project, index) => (
                   <div
                     key={project.id}
-                    className="group bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all duration-500 hover:scale-105 hover:bg-white/10"
-                    style={{ animationDelay: `${index * 200}ms` }}
+                    className="group rounded-2xl p-6 transition-all duration-500 hover:scale-105"
+                    style={{
+                      backgroundColor: "rgba(44,43,60,0.3)",
+                      backdropFilter: "blur(10px)",
+                      border: "1px solid rgba(64,63,76,0.4)",
+                      animationDelay: `${index * 200}ms`,
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor =
+                        "rgba(44,43,60,0.5)";
+                      e.currentTarget.style.borderColor = "rgba(64,63,76,0.7)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor =
+                        "rgba(44,43,60,0.3)";
+                      e.currentTarget.style.borderColor = "rgba(64,63,76,0.4)";
+                    }}
                   >
-                    <div className="aspect-video bg-gradient-to-br from-gray-700 to-gray-800 rounded-xl mb-6 overflow-hidden relative">
+                    <div
+                      className="aspect-video rounded-xl mb-6 overflow-hidden relative"
+                      style={{
+                        backgroundColor: "#1B2432",
+                      }}
+                    >
                       <img
                         src={project.image}
                         alt={project.title}
@@ -204,11 +531,17 @@ export default function Home() {
                     </div>
 
                     <div className="text-left">
-                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-200 transition-colors">
+                      <h3
+                        className="text-xl font-bold mb-3 transition-colors group-hover:opacity-80"
+                        style={{ color: "#E8E6E3" }}
+                      >
                         {project.title}
                       </h3>
 
-                      <p className="text-gray-300 text-sm mb-4 leading-relaxed line-clamp-3">
+                      <p
+                        className="text-sm mb-4 leading-relaxed line-clamp-3"
+                        style={{ color: "#A8A5A0" }}
+                      >
                         {project.description}
                       </p>
 
@@ -216,7 +549,12 @@ export default function Home() {
                         {project.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="px-3 py-1 bg-blue-500/20 text-blue-200 text-xs rounded-full border border-blue-400/20"
+                            className="px-3 py-1 text-xs rounded-full border"
+                            style={{
+                              backgroundColor: "rgba(27,36,50,0.4)",
+                              color: "#A8A5A0",
+                              borderColor: "rgba(64,63,76,0.5)",
+                            }}
                           >
                             {tag}
                           </span>
@@ -225,7 +563,22 @@ export default function Home() {
 
                       <a
                         href={project.link}
-                        className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 group-hover:shadow-lg group-hover:shadow-blue-500/25"
+                        className="inline-flex items-center gap-2 font-medium py-3 px-6 rounded-lg transition-all duration-300"
+                        style={{
+                          backgroundColor: "#403F4C",
+                          color: "#E8E6E3",
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = "#2C2B3C";
+                          e.currentTarget.style.transform = "translateY(-2px)";
+                          e.currentTarget.style.boxShadow =
+                            "0 10px 25px rgba(64,63,76,0.4)";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = "#403F4C";
+                          e.currentTarget.style.transform = "translateY(0)";
+                          e.currentTarget.style.boxShadow = "none";
+                        }}
                       >
                         Learn More
                         <svg
@@ -250,23 +603,62 @@ export default function Home() {
           </FadeInSection>
           {/* Call to Action Section */}
           <FadeInSection>
-            <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/10">
-              <h3 className="text-3xl font-bold text-white mb-4">
+            <div className="h-25"></div>
+            <div
+              id="cta-section"
+              className="rounded-2xl p-8 md:p-12 border"
+              style={{
+                backgroundColor: "rgba(44,43,60,0.4)",
+                backdropFilter: "blur(10px)",
+                borderColor: "rgba(64,63,76,0.5)",
+              }}
+            >
+              <h3
+                className="text-3xl font-bold mb-4"
+                style={{ color: "#E8E6E3" }}
+              >
                 Let's Build Something Amazing
               </h3>
-              <p className="text-gray-300 mb-8 text-lg">
+              <p className="mb-8 text-lg" style={{ color: "#A8A5A0" }}>
                 I'm always interested in new opportunities and collaborations
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
                   href="/about"
-                  className="bg-white text-gray-900 font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors duration-300"
+                  className="font-semibold py-3 px-8 rounded-lg transition-all duration-300"
+                  style={{
+                    backgroundColor: "#403F4C",
+                    color: "#E8E6E3",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = "#2C2B3C";
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = "#403F4C";
+                    e.currentTarget.style.transform = "translateY(0)";
+                  }}
                 >
                   About Me
                 </a>
                 <a
                   href="mailto:your-email@cornell.edu"
-                  className="border-2 border-white/30 text-white font-semibold py-3 px-8 rounded-lg hover:border-white/50 hover:bg-white/10 transition-all duration-300"
+                  className="border-2 font-semibold py-3 px-8 rounded-lg transition-all duration-300"
+                  style={{
+                    borderColor: "rgba(64,63,76,0.8)",
+                    color: "#E8E6E3",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "#403F4C";
+                    e.currentTarget.style.backgroundColor =
+                      "rgba(64,63,76,0.2)";
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "rgba(64,63,76,0.8)";
+                    e.currentTarget.style.backgroundColor = "transparent";
+                    e.currentTarget.style.transform = "translateY(0)";
+                  }}
                 >
                   Get In Touch
                 </a>
@@ -284,12 +676,25 @@ export default function Home() {
         }`}
       >
         <button
-          onClick={scrollToProjects}
-          className="group animate-bounce cursor-pointer bg-white/10 hover:bg-white/20 rounded-full p-4 transition-all duration-300 border border-white/20 hover:border-white/40 pointer-events-auto"
+          onClick={scrollToNextSection}
+          className="group animate-bounce cursor-pointer rounded-full p-4 transition-all duration-300 border pointer-events-auto"
+          style={{
+            backgroundColor: "rgba(44,43,60,0.4)",
+            borderColor: "rgba(64,63,76,0.6)",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = "rgba(44,43,60,0.6)";
+            e.currentTarget.style.borderColor = "rgba(64,63,76,0.8)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = "rgba(44,43,60,0.4)";
+            e.currentTarget.style.borderColor = "rgba(64,63,76,0.6)";
+          }}
           aria-label="Scroll to projects"
         >
           <svg
-            className="w-6 h-6 text-white group-hover:text-blue-200 transition-colors"
+            className="w-6 h-6 transition-colors group-hover:opacity-80"
+            style={{ color: "#A8A5A0" }}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -303,6 +708,28 @@ export default function Home() {
           </svg>
         </button>
       </div>
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.6s ease-out;
+        }
+        .line-clamp-3 {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+      `}</style>
     </div>
   );
 }
