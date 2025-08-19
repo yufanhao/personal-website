@@ -77,6 +77,7 @@ export default function Home() {
     {
       id: 1,
       title: "Senna",
+      title: "Senna",
       description:
         "iOS Social fitness app featuring real-time workout tracking and social feed, like Strava for weight lifting. Available on App Store!",
       image: "https://via.placeholder.com/400x225/403F4C/ffffff?text=Project+1",
@@ -94,6 +95,7 @@ export default function Home() {
     },
     {
       id: 3,
+      title: "Munch",
       title: "Munch",
       description:
         "iOS social dining app that scans receipts and automatically extracts food items to split the bill in group settings.",
