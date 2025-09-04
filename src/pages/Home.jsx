@@ -77,30 +77,28 @@ export default function Home() {
     {
       id: 1,
       title: "Senna",
-      title: "Senna",
       description:
         "iOS Social fitness app featuring real-time workout tracking and social feed, like Strava for weight lifting. Available on App Store!",
-      image: "https://via.placeholder.com/400x225/403F4C/ffffff?text=Project+1",
-      link: "/projects/project-one",
+      image: "senna.png",
+      link: "https://apps.apple.com/us/app/senna-social-fitness/id6746135647",
       tags: ["Swift", "Firebase", "MVVM Architecture"],
     },
     {
       id: 2,
       title: "DuckDuckDebug",
       description:
-        "AI voice controlled debugging tool combining the CodeBERT model (fine-tuned on CoNaLa dataset) and RAG for intelligent assistance.",
+        "AI voice controlled debugging tool combining the CodeBERT ML model (fine-tuned on CoNaLa dataset) and RAG for intelligent debugging.",
       image: "duckduckdebug.png",
-      link: "/projects/project-two",
+      link: "https://devpost.com/software/duck-duck-debug",
       tags: ["Node.js", "React", "ML", "MongoDB"],
     },
     {
       id: 3,
       title: "Munch",
-      title: "Munch",
       description:
         "iOS social dining app that scans receipts and automatically extracts food items to split the bill in group settings.",
       image: "munch.png",
-      link: "/projects/project-three",
+      link: "https://github.com/yufanhao/munch-backend",
       tags: ["Python", "Flask", "SwiftUI", "Computer Vision"],
     },
   ];
@@ -113,7 +111,7 @@ export default function Home() {
       }}
     >
       {/* Subtle grid pattern overlay */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none">
+      <div className="absolute inset-0 opacity-25 pointer-events-none">
         <div
           className="absolute inset-0"
           style={{
@@ -147,7 +145,7 @@ export default function Home() {
           }}
         ></div>
         <div // solid circle
-          className="absolute bottom-28 left-9/30 w-3 h-3 rounded-full animate-bounce"
+          className="absolute bottom-24 left-9/30 w-3 h-3 rounded-full animate-bounce"
           style={{
             backgroundColor: "rgba(232,230,227,0.7)",
             animationDelay: "1s",
@@ -176,8 +174,21 @@ export default function Home() {
             animationDelay: "1.5s",
           }}
         ></div>
-        <div // x shape (two crossing lines)
+        <div // x shape right(two crossing lines)
           className="absolute bottom-1/2 right-1/6 w-6 h-6 animate-spin"
+          style={{ animationDuration: "25s" }}
+        >
+          <div
+            className="absolute top-1/2 left-0 w-full h-0.5 transform -translate-y-1/2 rotate-45"
+            style={{ backgroundColor: "rgba(168,165,160,0.7)" }}
+          ></div>
+          <div
+            className="absolute top-1/2 left-0 w-full h-0.5 transform -translate-y-1/2 -rotate-45"
+            style={{ backgroundColor: "rgba(168,165,160,0.7)" }}
+          ></div>
+        </div>
+        <div // x shape left (two crossing lines)
+          className="absolute top-3/11 left-2/7 w-6 h-6 animate-spin"
           style={{ animationDuration: "25s" }}
         >
           <div
@@ -273,7 +284,8 @@ export default function Home() {
                   className="text-lg md:text-xl leading-relaxed font-light"
                   style={{ color: "#A8A5A0" }}
                 >
-                  I love building projects that blend creativity and logic.
+                  I love building projects that creatively solve real world
+                  problems.
                 </p>
               </div>
             </div>
@@ -389,7 +401,7 @@ export default function Home() {
                               className="text-xl font-bold"
                               style={{ color: "#E8E6E3" }}
                             >
-                              Research Assistant
+                              Student
                             </h3>
                             <span
                               className="text-sm font-medium px-3 py-1 rounded-full border"
@@ -399,7 +411,7 @@ export default function Home() {
                                 borderColor: "rgba(64,63,76,0.5)",
                               }}
                             >
-                              2023 - Present
+                              2024 - Present
                             </span>
                           </div>
                           <p
@@ -412,9 +424,11 @@ export default function Home() {
                             className="text-sm leading-relaxed"
                             style={{ color: "#A8A5A0" }}
                           >
-                            Conducted research in artificial intelligence and
-                            machine learning. Published findings and presented
-                            at academic conferences.
+                            Became a computer science student at Cornell
+                            University. Took classes relating to object oriented
+                            programming, data structures, algorithms, backend
+                            engineering, databases, machine learning, and
+                            systems programming.
                           </p>
                         </div>
                       </div>
@@ -445,7 +459,7 @@ export default function Home() {
                               className="text-xl font-bold"
                               style={{ color: "#E8E6E3" }}
                             >
-                              Teaching Assistant
+                              The Beginning
                             </h3>
                             <span
                               className="text-sm font-medium px-3 py-1 rounded-full border"
@@ -455,22 +469,21 @@ export default function Home() {
                                 borderColor: "rgba(64,63,76,0.5)",
                               }}
                             >
-                              Fall 2023
+                              Fall 2022
                             </span>
                           </div>
                           <p
                             className="text-lg font-medium mb-2"
                             style={{ color: "#A8A5A0" }}
                           >
-                            Cornell University - CS 2110
+                            Nashua High School South
                           </p>
                           <p
                             className="text-sm leading-relaxed"
                             style={{ color: "#A8A5A0" }}
                           >
-                            Assisted students with object-oriented programming
-                            concepts and data structures. Held office hours and
-                            graded assignments.
+                            Began my programming journey with AP Computer
+                            Science. Learned Java and began building projects!
                           </p>
                         </div>
                       </div>
@@ -565,6 +578,7 @@ export default function Home() {
 
                       <a
                         href={project.link}
+                        target="_blank"
                         className="inline-flex items-center gap-2 font-medium py-3 px-6 rounded-lg transition-all duration-300"
                         style={{
                           backgroundColor: "#403F4C",
@@ -644,7 +658,7 @@ export default function Home() {
                   About Me
                 </a>
                 <a
-                  href="mailto:your-email@cornell.edu"
+                  href="mailto:fy229@cornell.edu"
                   className="border-2 font-semibold py-3 px-8 rounded-lg transition-all duration-300"
                   style={{
                     borderColor: "rgba(64,63,76,0.8)",

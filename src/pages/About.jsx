@@ -9,23 +9,46 @@ export default function About() {
   const skills = [
     {
       category: "Languages",
-      items: ["Python", "Java", "JavaScript", "C++", "TypeScript", "SQL"],
-    },
-    {
-      category: "Frontend",
-      items: ["React", "Next.js", "HTML/CSS", "Tailwind CSS", "Vue.js"],
+      items: [
+        "Python",
+        "Java",
+        "JavaScript",
+        "TypeScript",
+        "Swift",
+        "C",
+        "C++",
+        "HTML",
+        "CSS",
+        "SQL",
+        "OCaml",
+      ],
     },
     {
       category: "Backend",
-      items: ["Node.js", "Express", "Flask", "Django", "MongoDB", "PostgreSQL"],
+      items: ["Node.js", "Flask", "Firebase", "MongoDB", "PostgreSQL"],
+    },
+    {
+      category: "Frontend",
+      items: ["React", "SwiftUI", "HTML/CSS", "Tailwind CSS"],
+    },
+    {
+      category: "Frameworks",
+      items: ["Node.js", "Flask", "RAG Model", "LangChain"],
     },
     {
       category: "Tools & Others",
-      items: ["Git", "Docker", "AWS", "Linux", "Figma", "Machine Learning"],
+      items: ["Git", "Docker", "Google Cloud", "AWS", "Linux"],
     },
   ];
 
   const timeline = [
+    {
+      year: "June 2025 - Present",
+      title: "Amphenol",
+      description:
+        "Worked as a software engineer intern over the summer and now part time during the school year. Developed enterprise-scale inventory management application for the building and looking to expand further.",
+      type: "education",
+    },
     {
       year: "2024 - Present",
       title: "Cornell University",
@@ -34,17 +57,10 @@ export default function About() {
       type: "education",
     },
     {
-      year: "2023",
-      title: "First Hackathon Win",
-      description:
-        "Won first place at CornellHacks with a innovative web application that helps students find study groups using machine learning algorithms.",
-      type: "achievement",
-    },
-    {
       year: "2022",
       title: "Started Programming Journey",
       description:
-        "Began learning programming with Python, quickly developing a passion for solving complex problems through code and building meaningful projects.",
+        "Began learning programming with my AP Computer Science class, quickly developing a passion for solving complex problems through code and building meaningful projects.",
       type: "milestone",
     },
   ];
@@ -52,15 +68,15 @@ export default function About() {
   const interests = [
     {
       icon: "💻",
-      title: "Software Development",
+      title: "Software/App Development",
       description:
-        "Building full-stack applications and exploring new technologies",
+        "Building full-stack applications and exploring new technologies to solve real-world problems",
     },
     {
       icon: "🤖",
-      title: "Machine Learning",
+      title: "AI/ML",
       description:
-        "Fascinated by AI and its potential to solve real-world problems",
+        "Fascinated by AI, its explosive evolution, and its seemingly infinite potential",
     },
     {
       icon: "🎮",
@@ -71,7 +87,8 @@ export default function About() {
     {
       icon: "🌱",
       title: "Open Source",
-      description: "Contributing to community projects and sharing knowledge",
+      description:
+        "Contributing to community projects, learning and sharing knowledge",
     },
   ];
 
@@ -171,33 +188,32 @@ export default function About() {
                     style={{ color: "#A8A5A0" }}
                   >
                     <p>
-                      I'm Fanhao Yu, a sophomore at{" "}
-                      <span
-                        className="font-semibold"
-                        style={{ color: "#E8E6E3" }}
-                      >
-                        Cornell University
-                      </span>{" "}
-                      pursuing a degree in Computer Science. My journey into
-                      programming began with curiosity about how technology
-                      shapes our world, and it has evolved into a deep passion
-                      for creating solutions that make a difference.
+                      Hi, I’m Fanhao Yu, a computer science student at Cornell
+                      University with a passion for building software that
+                      blends intelligence, creativity, and impact.
                     </p>
                     <p>
-                      What excites me most about computer science is the perfect
-                      blend of logical thinking and creative problem-solving.
-                      Whether I'm building a web application, exploring machine
-                      learning algorithms, or contributing to open-source
-                      projects, I'm always eager to learn new technologies and
-                      push the boundaries of what's possible.
+                      I’ve worked across a range of technologies, from
+                      enterprise web systems at Amphenol to iOS apps like Senna
+                      and Munch. I also enjoy pushing boundaries in AI and
+                      robotics, whether through publishing research on heuristic
+                      search, developing an AI voice debugging assistant, or
+                      working on autonomous boats with Cornell AutoBoat.
                     </p>
                     <p>
-                      When I'm not coding, you can find me participating in
-                      hackathons, collaborating with fellow students on
-                      innovative projects, or exploring the beautiful Cornell
-                      campus. I believe in the power of technology to create
-                      positive change, and I'm committed to using my skills to
-                      build a better future.
+                      What excites me most is solving problems end-to-end:
+                      designing a database schema, crafting intuitive
+                      interfaces, or integrating cutting-edge machine learning
+                      models into real-world products. I love working on
+                      projects that offer novel solutions to our biggest
+                      problems, whether that’s through social apps, robotics
+                      competitions, or community clubs at Cornell.
+                    </p>
+                    <p>
+                      Outside of tech, you can find me dancing hip-hop, skiing,
+                      or playing basketball. If you’d like to chat about
+                      software engineering, AI, or literally anything else, feel
+                      free to reach out!
                     </p>
                   </div>
                 </div>
@@ -335,19 +351,23 @@ export default function About() {
                   <div className="space-y-3" style={{ color: "#A8A5A0" }}>
                     <div className="flex items-center gap-3">
                       <span>🎓</span>
-                      <span>Sophomore at Cornell University</span>
+                      <span>Student at Cornell University</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <span>📍</span>
-                      <span>Ithaca, NY</span>
+                      <span>Ithaca, NY and Nashua, NH</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <span>💼</span>
                       <span>Seeking internship opportunities</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span>🏆</span>
-                      <span>Hackathon winner</span>
+                      <span>💻</span>
+                      <span>I like coding</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span>🕺</span>
+                      <span>and dancing</span>
                     </div>
                   </div>
                 </div>

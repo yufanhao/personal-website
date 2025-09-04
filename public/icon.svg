@@ -1,0 +1,36 @@
+<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Left bracket -->
+  <path d="M20 18 L15 18 L15 42 L20 42" 
+        stroke="#E8E6E3" 
+        stroke-width="3" 
+        stroke-linecap="round" 
+        stroke-linejoin="round" 
+        fill="none"/>
+  
+  <!-- Right bracket -->
+  <path d="M40 18 L45 18 L45 42 L40 42" 
+        stroke="#E8E6E3" 
+        stroke-width="3" 
+        stroke-linecap="round" 
+        stroke-linejoin="round" 
+        fill="none"/>
+  
+  <!-- Center FY -->
+  <path d="M22 22 L22 38 M22 22 L28 22 M22 29 L26 29" 
+        stroke="#403F4C" 
+        stroke-width="2.5" 
+        stroke-linecap="round" 
+        stroke-linejoin="round" 
+        fill="none"/>
+  
+  <!-- Y letter -->
+  <path d="M30 22 L33 30 L36 22 M33 30 L33 38" 
+        stroke="#403F4C" 
+        stroke-width="2.5" 
+        stroke-linecap="round" 
+        stroke-linejoin="round" 
+        fill="none"/>
+  
+  <!-- Subtle accent -->
+  <circle cx="48" cy="15" r="1" fill="#A8A5A0" opacity="0.6"/>
+</svg>
