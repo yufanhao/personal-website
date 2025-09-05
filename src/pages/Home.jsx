@@ -145,14 +145,14 @@ export default function Home() {
           }}
         ></div>
         <div // solid circle
-          className="absolute bottom-1/7 left-9/30 w-3 h-3 rounded-full animate-bounce"
+          className="absolute bottom-1/8 left-9/30 w-3 h-3 rounded-full animate-bounce"
           style={{
             backgroundColor: "rgba(232,230,227,0.7)",
             animationDelay: "1s",
           }}
         ></div>
         <div // hollow circle
-          className="absolute bottom-1/8 left-1/7 w-5 h-5 border-2 rounded-full animate-pulse"
+          className="absolute bottom-1/4 left-1/7 w-5 h-5 border-2 rounded-full animate-pulse"
           style={{
             borderColor: "rgba(64,63,76,0.9)",
             animationDelay: "2s",
@@ -201,7 +201,7 @@ export default function Home() {
           ></div>
         </div>
         <div // diamond
-          className="absolute bottom-1/8 left-5/7 w-4 h-4 rotate-45 animate-bounce transform -translate-x-1/2"
+          className="absolute bottom-1/10 left-5/7 w-4 h-4 rotate-45 animate-bounce transform -translate-x-1/2"
           style={{
             backgroundColor: "rgba(232,230,227,0.6)",
             animationDelay: "2.5s",
